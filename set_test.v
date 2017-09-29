@@ -34,12 +34,10 @@ reg cal_valid;
 // FSM
 
 always @(posedge clk or posedge rst) begin
-	if(rst) begin
+	if(rst)
 		state <= STATE_INPUT;
-	end
-	else begin
+	else
 		state <= next_state;
-	end
 end 
 
 always @(*) begin
@@ -67,47 +65,35 @@ always @(*) begin
 end
 
 always @(*) begin
-	if(central_reg[23:20] >= x_side) begin
+	if(central_reg[23:20] >= x_side)
 		x_side_a = central_reg[23:20] - x_side;
-	end
-	else begin
+	else
 		x_side_a = x_side - central_reg[23:20];
-	end
 
-	if(central_reg[19:16] >= y_side) begin
+	if(central_reg[19:16] >= y_side)
 		y_side_a = central_reg[19:16] - y_side;
-	end
-	else begin
+	else
 		y_side_a = y_side - central_reg[19:16];
-	end
 
-	if(central_reg[15:12] >= x_side) begin
+	if(central_reg[15:12] >= x_side)
 		x_side_b = central_reg[15:12] - x_side;
-	end
-	else begin
+	else
 		x_side_b = x_side - central_reg[15:12];
-	end
 
-	if(central_reg[11:8] >= y_side) begin
+	if(central_reg[11:8] >= y_side)
 		y_side_b = central_reg[11:8] - y_side;
-	end
-	else begin
+	else
 		y_side_b = y_side - central_reg[11:8];
-	end
 
-	if(central_reg[7:4] >= x_side) begin
+	if(central_reg[7:4] >= x_side)
 		x_side_c = central_reg[7:4] - x_side;
-	end
-	else begin
+	else
 		x_side_c = x_side - central_reg[7:4];
-	end
 
-	if(central_reg[3:0] >= y_side) begin
+	if(central_reg[3:0] >= y_side)
 		y_side_c = central_reg[3:0] - y_side;
-	end
-	else begin
+	else
 		y_side_c = y_side - central_reg[3:0];
-	end
 end
 
 always @(*) begin
@@ -188,7 +174,7 @@ always @(posedge clk or posedge rst) begin
 					end
 				end
 				if(cal_valid)
-					candidate <= candidate + 1;
+					candidate <= candidate + 8'd1;
 			end
 			STATE_OUTPUT: begin
 				valid <= 1'b1;
